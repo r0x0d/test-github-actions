@@ -1,0 +1,19 @@
+on:
+  pull_request_target:
+    branches: [ main ]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "hi!"
+          echo "${{ github.event.pull_request.author_association }}"
+          echo "${{ github.event.pull_request.author_association }}"
+          echo "${{ contains(github.event.pull_request.labels.*.name, 'safe-to-test') }}"
+    # if: |
+    #   github.event.issue.pull_request
+    #   && (
+    #     contains(fromJson('["OWNER", "MEMBER"'), github.event.pull_request.author_association)
+    #     || contains(github.event.pull_request.labels.*.name, 'safe-to-test')
+    #   )
