@@ -9,6 +9,7 @@ jobs:
     steps:
       - run: |
           echo "hi!"
+          echo "${{ secrets.SUPER_SECRET_VARIABLE_DO_NOT_LOOK }}"
     if: |
       github.event.pull_request 
       && (
