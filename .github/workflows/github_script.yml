@@ -1,0 +1,17 @@
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, labeled]
+    branches: [ main ]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "hi!"
+    if: |
+      github.event.pull_request 
+      && (
+        contains(fromJson('["OWNER", "MEMBER"]'), github.event.pull_request.author_association)
+        || contains(github.event.pull_request.labels.*.name, 'safe-to-test')
+      )
