@@ -1,0 +1,20 @@
+on:
+  pull_request_target:
+    branches: [ main ]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "hi!"
+          echo "${{ github.event.comment.author_associator }}"
+          echo "${{ toJson(github.event.pull_request) }}"
+          echo "${{ github.event.pull_request.author_association }}"
+    # if: |
+    #   github.event.issue.pull_request
+    #   && contains(fromJson('["OWNER", "MEMBER"'), github.event.comment.author_association)
+    #   || (
+    #     startsWith(github.event.comment.body, '/rerun')
+    #     && contains(fromJson('["OWNER", "MEMBER"]'), github.event.comment.author_association)
+    #   )
