@@ -4,6 +4,12 @@ on:
     branches: [ main ]
 
 jobs:
+  test-something:
+  runs-on: ubuntu-latest
+  steps:
+    - run: |
+        echo "$$GITHUB_REPOSITORY"
+    
   convert_distros_to_matrix:
     runs-on: ubuntu-latest
     outputs:
