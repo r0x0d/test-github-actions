@@ -1,0 +1,20 @@
+name: "Workflow Dispatch Statements"
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: "Repository SHA"
+        required: false
+
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get SHA
+        env:
+          REPOSITORY_SHA: ${{ github.event.inputs.repository_sha }}
+        run: |
+          SHA=$(echo $REPOSITORY_SHA || git rev-parse HEAD)
+          echo "$SHA"
+          echo "::set-output name=SHA::$SHA"
