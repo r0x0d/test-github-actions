@@ -1,0 +1,16 @@
+name: "Issue comment"
+
+on:
+  issue_comment:
+    type:
+      - created
+
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get SHA
+        env:
+          REPOSITORY_SHA: ${{ github.event.inputs.repository_sha }}
+        run: |
+          echo ${{ github.event.pull_request.head.sha }}
